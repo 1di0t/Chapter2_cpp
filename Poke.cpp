@@ -4,6 +4,8 @@ using namespace std;
 class Flyable {//¸ðµç ÇÔ¼ö°¡ virtual
 public:
 	virtual void fly() = 0;//pure virtual func
+	Flyable() {};
+	virtual ~Flyable() {}
 };
 
 class Pokemon {
@@ -19,6 +21,7 @@ public:
 		cout << "Pokemon died\n";
 		delete flyalbe;
 		flyalbe = nullptr;
+
 	}
 	virtual void attack() {
 		cout << "attack!\n";
@@ -35,6 +38,8 @@ public:
 	}
 	~Pika() {
 		cout << "pikachu died\n";
+		delete this->flyalbe;
+		this->flyalbe = nullptr;
 	}
 	void attack() {
 		cout << "E-attack!\n";
@@ -45,11 +50,23 @@ public:
 	void fly() {
 		cout << "ÆÄ´ßÆÄ´ß\n";
 	}
+	Wings() {
+		cout << "Wings created\n";
+	}
+	~Wings() {
+		cout << "Wings broken\n";
+	}
 };
 class Jetpack :public Flyable {
 public:
 	void fly() {
 		cout << "½¹\n";
+	}
+	Jetpack() {
+		cout<< "Jetpack created\n";
+	}
+	~Jetpack() {
+		cout << "Jetpack broken\n";
 	}
 };
 int main() {
@@ -65,6 +82,8 @@ int main() {
 	pika2->performFly();
 	delete pika2;
 	pika2 = nullptr;
+
+
 
 	return 0;
 }
