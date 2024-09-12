@@ -32,12 +32,16 @@ int main()
 	Horse* h = (Horse*)horsee;//Old style//DownCast
 	h->run();
 
+	
+
 	Horse* h2 = dynamic_cast<Horse*>(horsee);//Modern style//DownCast
 	h2->run();
-
-	//Racoon* racoon = (Racoon*)horse;
-	/*Racoon* racoon = dynamic_cast<Racoon*>(horse);//type이 일치하지 않으면 null 대입*/
 	
+
+	//racoon* racoon = (racoon*)horse;
+	//racoon* racoon = dynamic_cast<racoon*>(horsee);//type이 일치하지 않으면 null 대입
+	//racoon->run();
+	//Search C++ Modern Casting
 	
 	
 
