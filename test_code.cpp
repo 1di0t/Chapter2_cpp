@@ -15,17 +15,17 @@ public:
         this->imaginary_num = imaginary_num;
     }
 
-    Complex operator+(Complex right) {
-        int real = this->real_num + right.real_num;
-        int imaginary = this->imaginary_num + right.imaginary_num;
-
-        return Complex(real, imaginary);
-    }
-
     void printing() {
         cout << real_num << " + " << imaginary_num << "i\n";
     }
 };
+//General function
+Complex operator+(Complex left,Complex right) {
+    int real = left.real_num + right.real_num;
+    int imaginary = left.imaginary_num + right.imaginary_num;
+
+    return Complex(real, imaginary);
+}
 
 int main() {
     Complex complex(10,8);
