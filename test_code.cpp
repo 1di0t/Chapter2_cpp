@@ -1,49 +1,41 @@
 /**************************************************************
-                    Dynamic cast
+                    Operator Overloading
  **************************************************************/
 #include <iostream>
-#include <string>
-#include <typeinfo> 
+
 using namespace std;
 
-class Animal {//Abstract class
+class Complex {//복소수
 public:
-	virtual void run() = 0;
+    int real_num;
+    int imaginary_num;
+
+    Complex(int real_num,int imaginary_num) {
+        this->real_num = real_num;
+        this->imaginary_num = imaginary_num;
+    }
+
+    Complex operator+(Complex right) {
+        int real = this->real_num + right.real_num;
+        int imaginary = this->imaginary_num + right.imaginary_num;
+
+        return Complex(real, imaginary);
+    }
+
+    void printing() {
+        cout << real_num << " + " << imaginary_num << "i\n";
+    }
 };
-class Horse :public Animal{
-public:
-	void run() {
-		cout <<this<< "run with 4 legs Verrrrrrrry Fast\n";
-	}
-};
-class Racoon : public Animal {
-public:
-	void run() {
-		cout << "run slowly but Racoon is cute very cute\n";
-	}
-};
 
-int main()
-{
-	Animal* horse = new Horse();//UpCast
-	horse->run();
+int main() {
+    Complex complex(10,8);
+    Complex complex2(-3, 8);
+    cout << complex.imaginary_num << endl;
 
-	Animal* horsee = new Horse();
-	Horse* h = (Horse*)horsee;//Old style//DownCast
-	h->run();
+    Complex complex3 = complex + complex2;
+    //Complex complex3 = complex.operator+(complex2);//operating like this code
 
-	
+    complex3.printing();
 
-	Horse* h2 = dynamic_cast<Horse*>(horsee);//Modern style//DownCast
-	h2->run();
-	
-
-	//racoon* racoon = (racoon*)horse;
-	//racoon* racoon = dynamic_cast<racoon*>(horsee);//type이 일치하지 않으면 null 대입
-	//racoon->run();
-	//Search C++ Modern Casting
-	
-	
-
-	return 0;
+    return 0;
 }
