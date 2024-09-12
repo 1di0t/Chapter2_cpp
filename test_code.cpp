@@ -18,6 +18,20 @@ public:
     void printing() {
         cout << real_num << " + " << imaginary_num << "i\n";
     }
+
+    //prefix operator
+    Complex operator++() {
+        return Complex(++this->real_num, this->imaginary_num);
+
+        //this->real_num += 1;
+        //return Complex(++this->real_num, this->imaginary_num);
+    }
+    //postfix operator
+    Complex operator++(int) {
+        Complex backup(this->real_num, this->imaginary_num);
+        this->real_num++;
+        return backup;
+    }
 };
 //General function upgrade version
 Complex operator+(const Complex& left,const Complex& right) {//Using reference variable to save memory //add const(read only) to protect the original class
@@ -27,17 +41,10 @@ Complex operator+(const Complex& left,const Complex& right) {//Using reference v
     return Complex(real, imaginary);
 }
 
+
 int main() {
-    Complex complex(10,8);
-    Complex complex2(-3, 8);
-    cout << complex.imaginary_num << endl;
-
-    //Complex complex3 = complex.operator+(complex2);//operating like this code in member function
-    //Complex complex3 = operator+(complex,complex2) //operating like this code in general function
-    Complex complex3 = complex + complex2;
-    
-
-    complex3.printing();
-
+    Complex complex_1(10, 9);
+    Complex complex_2 = complex_1++;
+    complex_2.printing();
     return 0;
 }
