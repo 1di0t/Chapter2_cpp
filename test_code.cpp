@@ -38,18 +38,16 @@ Complex Complex::operator++(int) {
     this->real_num++;
     return backup;
 }
-//General function upgrade version
-Complex operator+(const Complex& left,const Complex& right) {//Using reference variable to save memory //add const(read only) to protect the original class
-    int real = left.real_num + right.real_num;
-    int imaginary = left.imaginary_num + right.imaginary_num;
 
-    return Complex(real, imaginary);
+//Nonmember operator overloading
+ostream& operator<< (ostream& left, Complex& right) {
+    left << right.real_num << " + " << right.imaginary_num << "i\n";
+    return left;
 }
-
 
 int main() {
     Complex complex_1(10, 9);
     Complex complex_2 = complex_1++;
-    complex_2.printing();
+    cout << complex_2;
     return 0;
 }
