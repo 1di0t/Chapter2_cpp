@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 class Complex {//º¹¼Ò¼ö
 public:
     int real_num;
@@ -20,19 +21,23 @@ public:
     }
 
     //prefix operator
-    Complex operator++() {
-        return Complex(++this->real_num, this->imaginary_num);
-
-        //this->real_num += 1;
-        //return Complex(++this->real_num, this->imaginary_num);
-    }
+    Complex operator++();
     //postfix operator
-    Complex operator++(int) {
-        Complex backup(this->real_num, this->imaginary_num);
-        this->real_num++;
-        return backup;
-    }
+    Complex operator++(int);
 };
+//prefix operator
+Complex Complex::operator++() {
+    return Complex(++this->real_num, this->imaginary_num);
+
+    //this->real_num += 1;
+    //return Complex(++this->real_num, this->imaginary_num);
+}
+//postfix operator
+Complex Complex::operator++(int) {
+    Complex backup(this->real_num, this->imaginary_num);
+    this->real_num++;
+    return backup;
+}
 //General function upgrade version
 Complex operator+(const Complex& left,const Complex& right) {//Using reference variable to save memory //add const(read only) to protect the original class
     int real = left.real_num + right.real_num;
