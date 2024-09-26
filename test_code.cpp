@@ -2,6 +2,7 @@
                     Operator Overloading
  **************************************************************/
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -12,22 +13,23 @@ private:
     int imaginary_num;
 
 public:
-    Complex(int real_num,int imaginary_num) {
-        this->real_num = real_num;
-        this->imaginary_num = imaginary_num;
+    Complex():real_num(0), imaginary_num(0){}
+    Complex(int real_num,int imaginary_num):real_num(real_num),imaginary_num(imaginary_num){
     }
+
 
     void real_num_setter(int real_num) { this->real_num = real_num; };
     int real_num_getter() const { return real_num; };
     void imaginary_num_setter(int imaginary_num) { this->imaginary_num = imaginary_num; };
     int imaginary_num_getter() const { return imaginary_num; };
 
+
     Complex operator++() {//prefix operator
         return Complex(++this->real_num, this->imaginary_num);
 
         //this->real_num += 1;
         //return Complex(++this->real_num, this->imaginary_num);
-    };//prefix operator
+    };
     Complex operator++(int) {//postfix operator
         Complex backup(this->real_num, this->imaginary_num);
         this->real_num++;
@@ -39,56 +41,38 @@ public:
 
         return Complex(real, imaginary);
     }
+    
+
     //relationship between ostream and Complex
-    friend ostream& operator<< (ostream& left, Complex right) {
+    friend ostream& operator<< (ostream& out, Complex& right) {
         string operator_buff = " +";
         if (right.imaginary_num_getter() < 0) {
             operator_buff = ' ';
         }
 
-        left << right.real_num_getter() << operator_buff << right.imaginary_num_getter() << "i\n";
-        return left;
+        out << right.real_num_getter() << operator_buff << right.imaginary_num_getter() << "i\n";
+        return out;
     }
-};
-void Complex::real_num_setter(int real_num){ this->real_num = real_num; }
-int Complex::real_num_getter() const { return real_num; }
-void Complex::imaginary_num_setter(int imaginary_num) { this->imaginary_num = imaginary_num; }
-int Complex::imaginary_num_getter() const { return imaginary_num; }
+    friend istream& operator>> (istream& in,Complex& complex) {//custom input
+        string input;
+        cout << "실수, 허수 입력\nex)10+9i\n";
+        in >> input;
+        size_t pos = input.rfind('+');
+        complex.real_num = stoi(input.substr(0, pos));
+        complex.imaginary_num =stoi(input.substr(pos+1,-1));
 
-//Complex Complex::operator++() {//prefix operator
-//    return Complex(++this->real_num, this->imaginary_num);
-//
-//    //this->real_num += 1;
-//    //return Complex(++this->real_num, this->imaginary_num);
-//}
-//Complex Complex::operator++(int) {//postfix operator
-//    Complex backup(this->real_num, this->imaginary_num);
-//    this->real_num++;
-//    return backup;
-//}
-//Complex operator+(Complex& left,Complex& right) {
-//    int real = left.real_num_getter() + right.real_num_getter();
-//    int imaginary = left.imaginary_num_getter() + right.imaginary_num_getter();
-//
-//    return Complex(real, imaginary);
-//}
-//ostream& operator<< (ostream& left, Complex& right) {//Nonmember operator overloading
-//    string operator_buff = " +";
-//    if (right.imaginary_num_getter() < 0) {
-//        operator_buff = ' ';
-//    }
-//    
-//    left << right.real_num_getter() << operator_buff << right.imaginary_num_getter() << "i\n";
-//    return left;
-//}
+        return in;
+    }
+
+    
+};
+
+
 
 int main() {
-    Complex complex_1(10, 9);
-    Complex complex_2 = complex_1++;
-    cout << complex_2;
-    Complex complex_3(5,-99);
-    cout << complex_3;
-    Complex complex_4 = complex_1 + complex_3;
-    cout << complex_4;
+    Complex c0;
+
+    cin >> c0;
+    cout << c0;
     return 0;
 }
