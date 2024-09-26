@@ -57,9 +57,18 @@ public:
         string input;
         cout << "실수, 허수 입력\nex)10+9i\n";
         in >> input;
-        size_t pos = input.rfind('+');
-        complex.real_num = stoi(input.substr(0, pos));
-        complex.imaginary_num =stoi(input.substr(pos+1,-1));
+        size_t plusIndex = input.rfind('+');
+        size_t imaginaryIndex = input.rfind('i');
+
+        if (plusIndex != string::npos 
+            && imaginaryIndex != string::npos 
+            && imaginaryIndex > plusIndex) {
+            complex.real_num = stoi(input.substr(0, plusIndex));
+            complex.imaginary_num = stoi(input.substr(plusIndex + 1, imaginaryIndex));
+        }
+        else {
+            cout << "다시 입력해주세요";
+        }
 
         return in;
     }
