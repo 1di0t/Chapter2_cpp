@@ -10,6 +10,6 @@ public:
 	virtual ~DynamicArrary();
 
 
-	int setAt(int position, int val);
+	void setAt(int position, int val);
 	int getAt(int position);
 };

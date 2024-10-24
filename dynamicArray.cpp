@@ -22,17 +22,20 @@ DynamicArrary::~DynamicArrary()
     ptr = nullptr;
 }
 
-int DynamicArrary::setAt(int position, int val)
+void DynamicArrary::setAt(int position, int val)
 {
     if (position < 0 || position >= size) {
-        return -1;
+        throw 4885;
     }
     ptr[position] = val;
-    return 0;
+    
 }
 
 int DynamicArrary::getAt(int position)
 {
+    if (position > size) {
+        throw 488.2;
+    }
     return ptr[position];
 }
 
