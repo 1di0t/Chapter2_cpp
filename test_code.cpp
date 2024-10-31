@@ -12,16 +12,17 @@ int main()
 
 
         cout << darray.getAt(3)<<endl;
+        cout << darray.getAt(3) << endl;//garbage value
         cout << darray.getAt(0) << endl;
         
         cout << darray.getAt(11) << endl;
         darray.setAt(11, 7);
     }
-    catch(int error){
-        cout << "ÀÎµ¦½º ¹üÀ§ ÀÌÅ»" << endl;
+    catch (string error) {//String object
+        cout << error;
     }
-    catch (double error) {
-        cout << "get ÀÎµ¦½º ¹üÀ§ ÀÌÅ»" << endl;
+    catch (const char* error) {//C style //because c doesn't has String object
+        cout << error;
     }
     return 0;
 }

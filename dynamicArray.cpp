@@ -25,7 +25,7 @@ DynamicArrary::~DynamicArrary()
 void DynamicArrary::setAt(int position, int val)
 {
     if (position < 0 || position >= size) {
-        throw 4885;
+        throw string("할당 오류: 인덱스의 범위를 벗어났습니다");
     }
     ptr[position] = val;
     
@@ -34,7 +34,7 @@ void DynamicArrary::setAt(int position, int val)
 int DynamicArrary::getAt(int position)
 {
     if (position > size) {
-        throw 488.2;
+        throw "접근 오류: 인덱스의 범위를 벗어났습니다";
     }
     return ptr[position];
 }
