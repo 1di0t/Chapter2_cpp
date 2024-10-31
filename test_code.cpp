@@ -1,5 +1,6 @@
 #include "DynamicArray.h"
 #include <iostream>
+#include "customException.h"
 using namespace std;
 
 int main()
@@ -23,6 +24,11 @@ int main()
     }
     catch (const char* error) {//C style //because c doesn't has String object
         cout << error;
+    }
+    catch (CustomException customException) {
+        cout << "errorCode: " << customException.getErrCode() << endl;
+        cout << "error: " << customException.getErrMessage() << endl;
+        cout << "error Addr: " << customException.getAddr() << endl;
     }
     return 0;
 }
