@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <iostream>
 #include "dynamicArray.h"
+#include "customException.h"
 using namespace std;
 
 
@@ -13,11 +14,22 @@ DynamicArrary::DynamicArrary()
 }
 
 DynamicArrary::DynamicArrary(int size) :size(size) {
-    ptr = new int[size];
-}
+    try {
+        ptr = new int[size];
+        throw "1028";
+    }
+    //catch (const char* error) {
+    catch (...) {
+        delete ptr;
+        ptr = nullptr;
+        cout << "constructor error!\n";
+        throw;
+    }
+}//여기가 끝나야 소멸자도 돌아간다
 
 DynamicArrary::~DynamicArrary()
 {
+    cout << "dead"<<endl;
     delete ptr;
     ptr = nullptr;
 }
@@ -25,7 +37,7 @@ DynamicArrary::~DynamicArrary()
 void DynamicArrary::setAt(int position, int val)
 {
     if (position < 0 || position >= size) {
-        throw string("할당 오류: 인덱스의 범위를 벗어났습니다");
+        throw CustomException(404, "할당 오류: 인덱스의 범위를 벗어났습니다\n", this);
     }
     ptr[position] = val;
     
@@ -34,7 +46,8 @@ void DynamicArrary::setAt(int position, int val)
 int DynamicArrary::getAt(int position)
 {
     if (position > size) {
-        throw "접근 오류: 인덱스의 범위를 벗어났습니다";
+        //throw "접근 오류: 인덱스의 범위를 벗어났습니다";
+        throw CustomException(404, "접근 오류: 인덱스의 범위를 벗어났습니다\n",this);
     }
     return ptr[position];
 }
