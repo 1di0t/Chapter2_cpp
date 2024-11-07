@@ -13,19 +13,20 @@ DynamicArrary::DynamicArrary()
 {
 }
 
-DynamicArrary::DynamicArrary(int size) :size(size) {
-    try {
-        ptr = new int[size];
-        throw "1028";
-    }
-    //catch (const char* error) {
-    catch (...) {
+
+
+DynamicArrary::DynamicArrary(int size) try :size(size) {
+
+    ptr = new int[size];
+    throw "1028";
+}
+catch (...) {
         delete ptr;
         ptr = nullptr;
         cout << "constructor error!\n";
         throw;
-    }
-}//여기가 끝나야 소멸자도 돌아간다
+}
+
 
 DynamicArrary::~DynamicArrary()
 {
