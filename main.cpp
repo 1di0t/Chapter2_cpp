@@ -1,21 +1,14 @@
 #include <iostream>
+#include <string>
+#include "smaller.h"
 using namespace std;
 
-// templete function
-template <typename T, int N>//NonType
-void print(T(&array)[N])
-{
-    for (int i = 0; i < N; i++)
-    {
-        cout << array[i] << " ";
-    }
-    cout << endl;
-}
+
 
 int main()
-{
-    char arr1[5] = { 65, 78, 66, 67, 68};
-    
-    print(arr1);
+{ 
+    const char* s1 = "Byea";
+    const char* s2 = "Bye Bye";
+    cout << "Smaller(Bye, Bye Bye) = " << smaller(s1, s2) << endl;
     return 0;
 }
