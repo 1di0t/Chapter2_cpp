@@ -1,34 +1,15 @@
 #include "DynamicArray.h"
 #include <iostream>
-#include "customException.h"
 using namespace std;
 
-int main()
-{
-    try {
-        DynamicArrary darray(5);
-
-        darray.setAt(0, 24);
-        darray.setAt(3, -7);
-
-
-        cout << darray.getAt(3)<<endl;
-        cout << darray.getAt(3) << endl;//garbage value
-        cout << darray.getAt(0) << endl;
-        
-        cout << darray.getAt(11) << endl;
-        darray.setAt(11, 7);
-    }
-    catch (string error) {//String object
-        cout << error;
-    }
-    catch (const char* error) {//C style //because c doesn't has String object
-        cout << error;
-    }
-    catch (CustomException customException) {
-        cout << "errorCode: " << customException.getErrCode() << endl;
-        cout << "error: " << customException.getErrMessage() << endl;
-        cout << "error Addr: " << customException.getAddr() << endl;
-    }
-    return 0;
+int main() {
+	try {
+		int* ptr = new int[5000000000];
+		delete ptr;
+		ptr = nullptr;
+		cout << "complete";
+	}
+	catch (const bad_alloc& e) {//catch allocation error
+		cout << "memory alloc error";
+	}
 }
