@@ -1,47 +1,21 @@
-/**************************************************************
- * 두 값을 스왑하는 템플릿 함수를 사용하는 프로그램           *
- **************************************************************/
 #include <iostream>
 using namespace std;
 
-// 템플릿 함수 정의
-//template <typename T>
-//void exchange(T& first, T& second)
-//{
-//	T temp = first;
-//	first = second;
-//	second = temp;
-//}
-
-// 템플릿 함수 정의
-template <typename t>
-void exchange(t* first, t* second)
+// templete function
+template <typename T, int N>//NonType
+void print(T(&array)[N])
 {
-	t temp = *first;
-	*first = *second;
-	*second = temp;
+    for (int i = 0; i < N; i++)
+    {
+        cout << array[i] << " ";
+    }
+    cout << endl;
 }
 
 int main()
 {
-	// int 자료형 스왑
-	int integer1 = 5;
-	int integer2 = 70;
-	exchange(&integer1,& integer2);
-	cout << "swap(5, 70) = ";
-	cout << integer1 << "  " << integer2 << endl;
-	// double 자료형 스왑
-	double double1 = 101.5;
-	double double2 = 402.7;
-	exchange(&double1, &double2);
-	cout << "swap(101.5, 402.7) = ";
-	cout << double1 << "  " << double2 << endl;
-
-	// float 자료형 스왑
-	float float1 = 181.5f;
-	float float2 = 201.7f;
-	exchange(&float1, &float2);
-	cout << "swap(101.5, 402.7) = ";
-	cout << float1 << "  " << float2 << endl;
-	return 0;
+    char arr1[5] = { 65, 78, 66, 67, 68};
+    
+    print(arr1);
+    return 0;
 }
