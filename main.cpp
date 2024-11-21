@@ -5,24 +5,23 @@ using namespace std;
 
 int main()
 {
-//    ofstream outStrm;
-//    // open file
-//    outStrm.open("protein.txt");
+    int data;
 
-    ofstream outStrm("protein.txt");
+    ifstream inStrm("protein.txt");
 
-    if (!outStrm.is_open())
+    if (!inStrm.is_open())
     {
-        cout << "protein을 열 수 없습니다.";
+        cout << "protein.txt을 열 수 없습니다." << endl;
         assert(false);
     }
-    // write to file
+    // read file
     for (int i = 1; i <= 10; i++)
     {
-        outStrm << i * 3 << "  ";
+        inStrm >> data ;
+        cout << data << " ";
     }
     // 파일 닫기 
-    outStrm.close();
+    inStrm.close();
     // after return ofstream 객체가 소멸
     return 0;
 }
